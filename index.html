@@ -1,159 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project: Library</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="reset.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin-Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="reset.css">
+  <link rel="icon" type="image/x-icon" href="icons/home (1).svg">
+  <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap"
+      rel="stylesheet"
+    />
 </head>
 <body>
-    <!--App Drawer-->
-    <div class="drawer">
-        <div class="dashboard menuItem">
-            <object data="icons/view-dashboard (2).svg" type="image/svg+xml"></object>
-            <h1>Dashboard</h1>
-        </div>
-        <a href="/" class="menuItem">
-            <object data="icons/home (1).svg" type="image/svg+xml"></object>
-            <h1>Home</h1>
-        </a>
-        <a href="/index/index.html" class="menuItem">
-            <object data="icons/book-open-page-variant-outline.svg" type="image/svg+xml"></object>
-            <h1>Library</h1>
-        </a>
-        <div class="menuItem">
-            <object data="icons/message-reply-outline (1).svg" type="image/svg+xml"></object>
-            <h1>Messages</h1>
-          </div>
-          <div class="menuItem">
-            <object data="icons/clock-outline (1).svg" type="image/svg+xml"></object>
-            <h1>History</h1>
-          </div>
-          <div class="menuItem">
-            <object data="icons/note-multiple (1).svg" type="image/svg+xml"></object>
-            <h1>Tasks</h1>
-          </div>
-          <div class="menuItem">
-            <object data="icons/account-group (1).svg" type="image/svg+xml"></object>
-            <h1>Communities</h1>
-          </div>
-          <!--Need extra spacing, so nth child-->
-          <div class="menuItem">
-            <object data="icons/cog-box.svg" type="image/svg+xml"></object>
-            <h1>Settings</h1>
-          </div>
-          <div class="menuItem">
-            <object data="icons/message-question (1).svg" type="image/svg+xml"></object>
-            <h1>Support</h1>
-          </div>
-          <div class="menuItem">
-            <object data="icons/shield-check (1).svg" type="image/svg+xml"></object>
-            <h1>Privacy</h1>
-          </div>
-    </div>
 
-    <!--Navbar-->
-    <div class="navbar">
-        <!--Top Section-->
-        <div class="topNav">
-            <!--Search icon and search bar-->
-            <div class="search">
-                <div class="menuItem">
-                    <object data="icons/magnify (1).svg" type="image/svg+xml"></object>
-                </div>
-                <input type="text" name="search" autocomplete="off" />
-            </div>
+  <!--App Drawer-->
+  <div class="drawer">
+    <div class="dashboard menuItem">
+      <object data="icons/view-dashboard (2).svg" type="image/svg+xml"></object>
+    <h1>Dashboard</h1>
+    </div>
+    <a href="/" class="menuItem">
+      <object data="icons/home (1).svg" type="image/svg+xml"></object>
+      <h1>Home</h1>
+    </a>
+    <a class="menuItem" href="library/library.html">
+      <object data="icons/book-open-page-variant-outline.svg" type="image/svg+xml"></object>
+      <h1>Library</h1>
+    </a> 
+    <div class="menuItem">
+      <object data="icons/message-reply-outline (1).svg" type="image/svg+xml"></object>
+      <h1>Messages</h1>
+    </div>
+    <div class="menuItem">
+      <object data="icons/clock-outline (1).svg" type="image/svg+xml"></object>
+      <h1>History</h1>
+    </div>
+    <div class="menuItem">
+      <object data="icons/note-multiple (1).svg" type="image/svg+xml"></object>
+      <h1>Tasks</h1>
+    </div>
+    <div class="menuItem">
+      <object data="icons/account-group (1).svg" type="image/svg+xml"></object>
+      <h1>Communities</h1>
+    </div>
+    <!--Need extra spacing, so nth child-->
+    <div class="menuItem">
+      <object data="icons/cog-box.svg" type="image/svg+xml"></object>
+      <h1>Settings</h1>
+    </div>
+    <div class="menuItem">
+      <object data="icons/message-question (1).svg" type="image/svg+xml"></object>
+      <h1>Support</h1>
+    </div>
+    <div class="menuItem">
+      <object data="icons/shield-check (1).svg" type="image/svg+xml"></object>
+      <h1>Privacy</h1>
+    </div>
+  </div>
+
+  <!--Navbar-->
+  <div class="navbar">
+    <!--Top Section-->
+    <div class="topNav">
+      <!--Search icon and search bar-->
+      <div class="search">
+        <div class="menuItem">
+          <object data="icons/magnify (1).svg" type="image/svg+xml" style="width: 20px; height: 20px;"></object>
         </div>
-        <div class="account">
-            <div class="menuIcon">
-                <object data="icons/bell-ring-outline (1).svg" type="image/svg+xml"></object>
-            </div>
-            <!--Avatar from Github-->
-            <div class="gh-avatar"></div>
-            <!--Our username-->
-            <p class="name">Coding with Wilberforce</p>
+        <input type="text" name="search" autocomplete="off">
+      </div>
+      <div class="account">
+        <div class="menuItem">
+          <div class="menuIcon">
+            <object data="icons/bell-ring-outline (1).svg" type="image/svg+xml" style="width: 20px; height: 20px;"></object>
+          </div>
+          <!--Avatar from Github-->
+          <div class="gh-avatar"></div>
+          <!--Our username-->
+          <p class="name">Coding with Wilberforce </p>
         </div>
+      </div>
     </div>
     <!--Bottom Section-->
     <div class="bottom">
-        <!--Profile details-->
-        <div class="profile">
-            <div class="gh-avatar"></div>
-            <div class="profile-name">
-                <p class="greeting">Hi there,</p>
-                <p class="name">Wilberforce <span class="username">@kipyegonwilber</span> </p>
-            </div>
+      <!--Profile details-->
+      <div class="profile">
+        <div class="gh-avatar"></div>
+        <div class="profile-name">
+          <p class="greeting">Hi there,</p>
+          <p class="name">Wilberforce <span class="username">(@kipyegonwilber)</span></p>
         </div>
-        <!--Button section-->
-        <div class="buttons">
-            <button class="btn add-book">New</button>
-            <button class="btn">Upload</button>
-            <button class="btn">Share</button>
+      </div>
+      <!--Button section-->
+      <div class="buttons">
+        <button class="btn">New</button>
+        <button class="btn">Upload</button>
+        <button class="btn">Share</button>
+      </div>
+    </div>
+  </div>
+  <!--Main Content-->
+  <main class="content">
+    <div class="projects">
+      <h3>Your Projects</h3>
+
+      <!--Section for all project cards-->
+      <div class="cards">
+        <!--Each individual card, we need 6 cards-->
+        <div class="card">
+          <h5 class="card-title">Super Cool Project</h5>
+          <p class="card-text">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit ea
+            doloribus debitis reprehenderit? Sapiente, qui quaerat enim non.
+          </p>
+          <div class="icons">
+            <object data="icons/star-plus-outline (2).svg" type="image/svg+xml" style="width: 20px; height: 20px;"></object>
+            <object data="icons/eye-plus-outline (2).svg" type="image/svg+xml" style="width: 20px; height: 20px;"></object>
+            <object data="icons/source-branch (2).svg" type="image/svg+xml" style="width: 20px; height: 20px;"></object>
+          </div>
         </div>
+
+        <!--Each individual card, we need 6 cards-->
+        <div class="card">
+          <h5 class="card-title">Less Cool Project</h5>
+          <p class="card-text">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit
+            officia nesciunt harum distinctio quia nisi ipsum reiciendis
+            aspernatur, sunt nam. Doloremque aliquam ut culpa harum non rem
+            in, cumque vitae!
+          </p>
+          <div class="icons">
+            <object data="icons/star-plus-outline (2).svg" type="image/svg+xml" style="width: 20px; height: 20px;"></object>
+            <object data="icons/eye-plus-outline (2).svg" type="image/svg+xml" style="width: 20px; height: 20px;"></object>
+            <object data="icons/source-branch (2).svg" type="image/svg+xml" style="width: 20px; height: 20px;"></object>
+          </div>
+        </div>
+
+        <!--Each individual card, we need 6 cards-->
+        <div class="card">
+          <h5 class="card-title">Impossible App</h5>
+          <p class="card-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione,
+            dicta. Pariatur libero a molestiae quod culpa deserunt quo quam
+            eos necessitatibus aliquid, nam fuga sed itaque magnam delectus ex
+            animi?
+          </p>
+          <div class="icons">
+            <object data="icons/star-plus-outline (2).svg" type="image/svg+xml" style="width: 20px; height: 20px;"></object>
+            <object data="icons/eye-plus-outline (2).svg" type="image/svg+xml" style="width: 20px; height: 20px;"></object>
+            <object data="icons/source-branch (2).svg" type="image/svg+xml" style="width: 20px; height: 20px;"></object>
+          </div>
+        </div>
+        <!--Each individual card, we need 6 cards-->
+        <div class="card">
+          <h5 class="card-title">Easy Peasy App</h5>
+          <p class="card-text">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit ea
+            doloribus debitis reprehenderit? Sapiente, qui quaerat enim non.
+          </p>
+          <div class="icons">
+            <object data="icons/star-plus-outline (2).svg" type="image/svg+xml" style="width: 20px; height: 20px;"></object>
+            <object data="icons/eye-plus-outline (2).svg" type="image/svg+xml" style="width: 20px; height: 20px;"></object>
+            <object data="icons/source-branch (2).svg" type="image/svg+xml" style="width: 20px; height: 20px;"></object>
+          </div>
+        </div>
+        <!--Each individual card, we need 6 cards-->
+        <div class="card">
+          <h5 class="card-title">Ad Blocker</h5>
+          <p class="card-text">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit ea
+            doloribus debitis reprehenderit? Sapiente, qui quaerat enim non.
+          </p>
+          <div class="icons">
+            <object data="icons/star-plus-outline (2).svg" type="image/svg+xml" style="width: 20px; height: 20px;"></object>
+            <object data="icons/eye-plus-outline (2).svg" type="image/svg+xml" style="width: 20px; height: 20px;"></object>
+            <object data="icons/source-branch (2).svg" type="image/svg+xml" style="width: 20px; height: 20px;"></object>
+          </div>
+        </div>
+        <!--Each individual card, we need 6 cards-->
+        <div class="card">
+          <h5 class="card-title">Money Maker</h5>
+          <p class="card-text">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit ea
+            doloribus debitis reprehenderit? Sapiente, qui quaerat enim non.
+          </p>
+          <div class="icons">
+            <object data="icons/star-plus-outline (2).svg" type="image/svg+xml" style="width: 20px; height: 20px;"></object>
+            <object data="icons/eye-plus-outline (2).svg" type="image/svg+xml" style="width: 20px; height: 20px;"></object>
+            <object data="icons/source-branch (2).svg" type="image/svg+xml" style="width: 20px; height: 20px;"></object>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Side content - Announcements and trending-->
+
+    <!--Announcements-->
+    <div class="announcements">
+      <ul class="card">
+        <!--List of individual announcements-->
+        <li class="announcement">
+          <h5 class="card-title">Site Maintenance</h5>
+          <p class="card-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. In
+            veritatis commodi, sint dolore ex quidem mollitia dignissimos
+            omnis odio aliquam atque repudiandae quo ducimus rerum accusantium
+            voluptatem ab suscipit quis.
+          </p>
+        </li>
+        <li class="announcement">
+          <h5 class="card-title">Community Share Day</h5>
+          <p class="card-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. In
+            veritatis commodi, sint dolore ex quidem mollitia dignissimos
+            omnis odio aliquam atque repudiandae quo ducimus rerum accusantium
+            voluptatem ab suscipit quis.
+          </p>
+        </li>
+        <li class="announcement">
+          <h5 class="card-title">Updated Privacy Policy</h5>
+          <p class="card-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. In
+            veritatis commodi, sint dolore ex quidem mollitia dignissimos
+            omnis odio aliquam atque repudiandae quo ducimus rerum accusantium
+            voluptatem ab suscipit quis.
+          </p>
+        </li>
+      </ul>
     </div>
 
-    <!--Main Content-->
-    <main class="content">
-        <div class="projects">
-            <h3>Your Books</h3>
-            <div class="books cards">
-                <!--Section for all project cards-->
-            </div>
-        </div>
-    </main>
-
-    <div class="modal" id="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div class="modal-form">
-                <h1 class="form-title"></h1>
-                <form class="add-book-form">
-                    <div class="modal-input-field">
-                        <label for="book-title">Title:</label>
-                        <input 
-                        type="text" 
-                        name="book-title"
-                        id="book-title"
-                        class="modal-form-input"
-                        />
-                    </div>
-                    <div class="modal-input-field">
-                        <label for="book-author">Author:</label>
-                        <input 
-                        type="text"
-                        name="book-author"
-                        id="book-author"
-                        class="modal-form-input"
-                        />
-                    </div>
-                    <div class="modal-input-field">
-                        <label for="book-pages">Pages:</label>
-                        <input 
-                        type="number"
-                        min="0"
-                        name="book-pages"
-                        id="book-pages"
-                        class="modal-form-input"
-                        />
-                    </div>
-                    <div class="modal-input-field">
-                        <span class="modal-read">Read?</span>
-                        <label class="container">
-                            <input 
-                            type="text"
-                            name="book-author"
-                            id="book-author"
-                            class="modal-form-input"
-                            />
-                        </label>
-                    </div>
-                    <div class="submit-modal-form">
-                        <button type="submit" class="btn form-add-button"></button>
-                    </div>
-                </form>
-            </div>
-        </div>
+    <!--Trending Section-->
+    <div class="trending">
+      <h3>Trending</h3>
+      <ul class="card">
+        <!--List of all trending people-->
+        <li class="trend trend-1">
+          <div class="gh-avatar2"></div>
+          <div class="account">
+            <p class="username">@tegan</p>
+            <p class="name card-text">Coolest Youtuber Ever</p>
+          </div>
+        </li>
+        <li class="trend trend-2">
+          <div class="gh-avatar"></div>
+          <div class="account">
+            <p class="username">@kipyegonwilber</p>
+            <p class="name card-text">World Peace Builder</p>
+          </div>
+        </li>
+        <li class="trend trend-3">
+          <div class="gh-avatar3"></div>
+          <div class="account">
+            <p class="username">@kendall</p>
+            <p class="name card-text">Life Changing App</p>
+          </div>
+        </li>
+        <li class="trend trend-4">
+          <div class="gh-avatar4"></div>
+          <div class="account">
+            <p class="username">@alex</p>
+            <p class="name card-text">No Traffic Maker</p>
+          </div>
+        </li>
+      </ul>
     </div>
+  </main>
 </body>
 </html>
