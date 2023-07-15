@@ -1,1 +1,10 @@
-
+.modal-content {
+    background-color: #fefefe;
+    display: flex;
+    flex-direction: row-reverse;
+    margin: auto;
+    padding: 5px 5px 5px 20px;
+    border: 1px solid #888;
+    width: 350px;
+    border-radius: 10px;
+}
