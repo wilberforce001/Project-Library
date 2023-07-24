@@ -1,6 +1,7 @@
 //books - main div holding all the books
 const books = document.querySelector('.books')
 
+// array of books
 const myLibrary = [{
     title: 'Book1',
     author: 'me',
@@ -13,6 +14,7 @@ const myLibrary = [{
     read: false,
 }];
 
+// helper function to create html elements with textcontent and classes
 function createBookElement(el, content, className) {
     const element = document.createElement(el);
     element.textContent = content;
@@ -20,6 +22,7 @@ function createBookElement(el, content, className) {
     return element;
 }
 
+// helper function to create an input with event listerner for if a book is read
 function createReadElement(bookItem, book) {
     const read = document.createElement("div");
     read.setAttribute("class", "book-read");
@@ -46,9 +49,24 @@ function createReadElement(bookItem, book) {
 
 }
 
+// create the edit icon w/ event listener
 function createEditIcon(book) {
-    return createBookElement("div", null, "");
+    const editIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    editIcon.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    editIcon.setAttribute("viewBox", "0 0 24 24");
+    editIcon.setAttribute("width", "20");
+    editIcon.setAttribute("height", "20");
 
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path")
+    path.setAttribute("d", "M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z", "20", "20");
+
+    editIcon.appendChild(path);
+
+    editIcon.addEventListener('click', (e) => {
+        console.log(book);
+    });
+
+    return editIcon;
 }
 
 function createSVGIcons(pathData, width, height) {
@@ -67,6 +85,7 @@ function createSVGIcons(pathData, width, height) {
 
 }   
 
+// create dummy icons, they don't do anything
 function createIcons() {
     const div = createBookElement("div", "", "icons");
     const icon1 = createSVGIcons("M5.8 21L7.4 14L2 9.2L9.2 8.6L12 2L14.8 8.6L22 9.2L18.8 12H18C17.3 12 16.6 12.1 15.9 12.4L18.1 10.5L13.7 10.1L12 6.1L10.3 10.1L5.9 10.5L9.2 13.4L8.2 17.7L12 15.4L12.5 15.7C12.3 16.2 12.1 16.8 12.1 17.3L5.8 21M17 14V17H14V19H17V22H19V19H22V17H19V14H17Z", "20", "20");
@@ -77,10 +96,10 @@ function createIcons() {
     div.appendChild(icon2);
     div.appendChild(icon3);
     
-    return div;
-    
+    return div;  
 }
 
+// Function to create all of the book content on the book dom card
 function createBookItem (book, index) {
     const bookItem = document.createElement('div');
     bookItem.setAttribute('id', index);
@@ -103,10 +122,13 @@ function createBookItem (book, index) {
     books.insertAdjacentElement("afterbegin", bookItem);
 }
 
+
+// Function to render all the books
 function renderBooks () {
     myLibrary.map((book, index) => {
         createBookItem(book, index);
     });
 }
 
+// Render on page load
 renderBooks();
