@@ -6,177 +6,176 @@
     <title>Library</title>
 
     <link rel="stylesheet" href="../reset.css"/>
-    <link rel="stylesheet" href="../style.css"/>
     <link rel="stylesheet" href="lib-styles.css">
+    <link rel="stylesheet" href="../style.css"/>
     <link rel="icon" type="image/x-icon" href="../icons/book-open-page-variant-outline.svg"/>
 
 </head>
 <body>
     <!--App Drawer-->
     <div class="drawer">
-        <div class="dashboard menuItem">
-            <object data="../icons/view-dashboard (2).svg" type="image/svg+xml"></object>
-            <h1>Dashboard</h1>
+      <div class="dashboard menuItem">
+          <object data="../icons/view-dashboard (2).svg" type="image/svg+xml"></object>
+          <h1>Dashboard</h1>
+      </div>
+      <a class="menuItem" href="../index.html">
+          <object data="../icons/home (1).svg" type="image/svg+xml"></object>
+          <h1>Home</h1>
+      </a>
+      <a class="menuItem" href="library.html">
+          <object data="../icons/book-open-page-variant-outline.svg" type="image/svg+xml"></object>
+          <h1>Library</h1>
+      </a>
+      <div class="menuItem">
+          <object data="../icons/message-reply-outline (1).svg" type="image/svg+xml"></object>
+          <h1>Messages</h1>
         </div>
-        <a class="menuItem" href="../index.html">
-            <object data="../icons/home (1).svg" type="image/svg+xml"></object>
-            <h1>Home</h1>
-        </a>
-        <a class="menuItem" href="library.html">
-            <object data="../icons/book-open-page-variant-outline.svg" type="image/svg+xml"></object>
-            <h1>Library</h1>
-        </a>
         <div class="menuItem">
-            <object data="../icons/message-reply-outline (1).svg" type="image/svg+xml"></object>
-            <h1>Messages</h1>
-          </div>
-          <div class="menuItem">
-            <object data="../icons/clock-outline (1).svg" type="image/svg+xml"></object>
-            <h1>History</h1>
-          </div>
-          <div class="menuItem">
-            <object data="../icons/note-multiple (1).svg" type="image/svg+xml"></object>
-            <h1>Tasks</h1>
-          </div>
-          <div class="menuItem">
-            <object data="../icons/account-group (1).svg" type="image/svg+xml"></object>
-            <h1>Communities</h1>
-          </div>
-          <!--Need extra spacing, so nth child-->
-          <div class="menuItem">
-            <object data="../icons/cog-box.svg" type="image/svg+xml"></object>
-            <h1>Settings</h1>
-          </div>
-          <div class="menuItem">
-            <object data="../icons/message-question (1).svg" type="image/svg+xml"></object>
-            <h1>Support</h1>
-          </div>
-          <div class="menuItem">
-            <object data="../icons/shield-check (1).svg" type="image/svg+xml"></object>
-            <h1>Privacy</h1>
-          </div>
-    </div>
-
-    <!--Navbar-->
-    <div class="navbar">
-        <!--Top Section-->
-        <div class="topNav">
-          <!--Search icon and search bar-->
-          <div class="search">
-            <div class="menuItem">
-              <object data="../icons/magnify (1).svg" type="image/svg+xml" style="width: 20px; height: 20px;"></object>
-            </div>
-            <input type="text" name="search" autocomplete="off">
-          </div>
-          <div class="account">
-            <div class="menuItem">
-              <div class="menuIcon">
-                <object data="../icons/bell-ring-outline (1).svg" type="image/svg+xml" style="width: 20px; height: 20px;"></object>
-              </div>
-              <!--Avatar from Github-->
-              <div class="gh-avatar"></div>
-              <!--Our username-->
-              <p class="name">Coding with Wilberforce </p>
-            </div>
-          </div>
+          <object data="../icons/clock-outline (1).svg" type="image/svg+xml"></object>
+          <h1>History</h1>
         </div>
-        <!--Bottom Section-->
-        <div class="bottom">
-          <!--Profile details-->
-          <div class="profile">
-            <div class="gh-avatar"></div>
-            <div class="profile-name">
-              <p class="greeting">Hi there,</p>
-              <p class="name">Wilberforce <span class="username">(@kipyegonwilber)</span></p>
-            </div>
+        <div class="menuItem">
+          <object data="../icons/note-multiple (1).svg" type="image/svg+xml"></object>
+          <h1>Tasks</h1>
+        </div>
+        <div class="menuItem">
+          <object data="../icons/account-group (1).svg" type="image/svg+xml"></object>
+          <h1>Communities</h1>
+        </div>
+        <!--Need extra spacing, so nth child-->
+        <div class="menuItem">
+          <object data="../icons/cog-box.svg" type="image/svg+xml"></object>
+          <h1>Settings</h1>
+        </div>
+        <div class="menuItem">
+          <object data="../icons/message-question (1).svg" type="image/svg+xml"></object>
+          <h1>Support</h1>
+        </div>
+        <div class="menuItem">
+          <object data="../icons/shield-check (1).svg" type="image/svg+xml"></object>
+          <h1>Privacy</h1>
+        </div>
+  </div>
+
+  <!--Navbar-->
+  <div class="navbar">
+    <!--Top Section-->
+    <div class="topNav">
+      <!--Search icon and search bar-->
+      <div class="search">
+        <div class="menuItem">
+          <object data="../icons/magnify (1).svg" type="image/svg+xml" style="width: 20px; height: 20px;"></object>
+        </div>
+        <input type="text" name="search" autocomplete="off">
+      </div>
+      <div class="account">
+        <div class="menuItem">
+          <div class="menuIcon">
+            <object data="../icons/bell-ring-outline (1).svg" type="image/svg+xml" style="width: 20px; height: 20px;"></object>
           </div>
-          <!--Button section-->
-          <div class="buttons">
-            <button class="btn add-book">New</button>
-            <button class="btn">Upload</button>
-            <button class="btn">Share</button>
-          </div>
+          <!--Avatar from Github-->
+          <div class="gh-avatar"></div>
+          <!--Our username-->
+          <p class="name">Coding with Wilberforce </p>
         </div>
       </div>
-
+    </div>
     <!--Bottom Section-->
     <div class="bottom">
-        <!--Profile details-->
-        <div class="profile">
-            <div class="gh-avatar"></div>
-            <div class="profile-name">
-                <p class="greeting">Hi there,</p>
-                <p class="name">Wilberforce <span class="username">@kipyegonwilber</span> </p>
-            </div>
+      <!--Profile details-->
+      <div class="profile">
+        <div class="gh-avatar"></div>
+        <div class="profile-name">
+          <p class="greeting">Hi there,</p>
+          <p class="name">Wilberforce <span class="username">(@kipyegonwilber)</span></p>
         </div>
-        <!--Button section-->
-        <div class="buttons">
-            <button class="btn add-book">New</button>
-            <button class="btn">Upload</button>
-            <button class="btn">Share</button>
+      </div>
+      <!--Button section-->
+      <div class="buttons">
+        <button class="btn add-book">New</button>
+        <button class="btn">Upload</button>
+        <button class="btn">Share</button>
+      </div>
+    </div>
+  </div>
+
+<!--Bottom Section-->
+<div class="bottom">
+    <!--Profile details-->
+    <div class="profile">
+        <div class="gh-avatar"></div>
+        <div class="profile-name">
+            <p class="greeting">Hi there,</p>
+            <p class="name">Wilberforce <span class="username">@kipyegonwilber</span> </p>
         </div>
     </div>
-
-    <!--Main Content-->
-    <main class="content">
-        <h3>Your Books</h3>
-        <div class="books">
-            <!--Section for all project cards-->
-        </div>
-    </main>
-
-    <div class="modal" id="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div class="modal-form">
-                <h1 class="form-title"></h1>
-                <form class="add-book-form">
-                    <div class="modal-input-field">
-                        <label for="book-title">Title:</label>
-                        <input 
-                        type="text" 
-                        name="book-title"
-                        id="book-title"
-                        class="modal-form-input"
-                        />
-                    </div>
-                    <div class="modal-input-field">
-                        <label for="book-author">Author:</label>
-                        <input 
-                        type="text"
-                        name="book-author"
-                        id="book-author"
-                        class="modal-form-input"
-                        />
-                    </div>
-                    <div class="modal-input-field">
-                        <label for="book-pages">Pages:</label>
-                        <input 
-                        type="number"
-                        min="0"
-                        name="book-pages"
-                        id="book-pages"
-                        class="modal-form-input"
-                        />
-                    </div>
-                    <div class="modal-input-field">
-                        <span class="modal-read">Read?</span>
-                        <label class="container">
-                            <input 
-                            type="checkbox"
-                            name="book-read"
-                            id="book-read"
-                            class="checkmark"
-                            />
-                        </label>
-                    </div>
-                    <div class="submit-modal-form">
-                        <button type="submit" class="btn form-add-button"></button>
-                    </div>
-                </form>
-            </div>
-        </div>
+    <!--Button section-->
+    <div class="buttons">
+        <button class="btn add-book">New</button>
+        <button class="btn">Upload</button>
+        <button class="btn">Share</button>
     </div>
+</div>
+
+<!--Main Content-->
+<main class="content">
+    <h3>Your Books</h3>
+    <div class="books">
+        <!--Section for all project cards-->
+    </div>
+</main>
+  <div class="modal" id="modal">
+      <div class="modal-content">
+          <span class="close">&times;</span>
+          <div class="modal-form">
+              <h1 class="form-title"></h1>
+              <form class="add-book-form">
+                  <div class="modal-input-field">
+                      <label for="book-title">Title:</label>
+                      <input 
+                      type="text" 
+                      name="book-title"
+                      id="book-title"
+                      class="modal-form-input"
+                      />
+                  </div>
+                  <div class="modal-input-field">
+                      <label for="book-author">Author:</label>
+                      <input 
+                      type="text"
+                      name="book-author"
+                      id="book-author"
+                      class="modal-form-input"
+                      />
+                  </div>
+                  <div class="modal-input-field">
+                      <label for="book-pages">Pages:</label>
+                      <input 
+                      type="number"
+                      min="0"
+                      name="book-pages"
+                      id="book-pages"
+                      class="modal-form-input"
+                      />
+                  </div>
+                  <div class="modal-input-field">
+                      <span class="modal-read">Read?</span>
+                      <label class="container">
+                          <input 
+                          type="checkbox"
+                          name="book-read"
+                          id="book-read"
+                          class="checkmark"
+                          />
+                      </label>
+                  </div>
+                  <div class="submit-modal-form">
+                      <button type="submit" class="btn form-add-button"></button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
 </body>
 <script src="main.js"></script>
 </html>
