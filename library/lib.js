@@ -1,18 +1,25 @@
 const books = document.querySelector(".books");
 
 
-const myLibrary = [{
-    title: "Book1",
-    author: "me", 
-    pages: 5000,
-    read: false,
-}, {
-    title: "Book2",
-    author: "you", 
-    pages: 500,
-    read: false,
+let myLibrary = [];
 
-}];
+function addLocalStorage() {
+  localStorage.setItem('library', JSON.stringify([{
+      title: "Book1",
+      author: "me", 
+      pages: 5000,
+      read: false,
+  }, 
+  {
+      title: "Book2",
+      author: "you", 
+      pages: 500,
+      read: false,
+  }]));
+
+  myLibrary = JSON.parse(localStorage.getItem("library")) || [];
+  renderBooks();
+};
 
 const book1Container = document.createElement("div");
 book1Container.setAttribute("class", "book-container");
@@ -169,4 +176,4 @@ function renderBooks () {
 
     });
 }
-renderBooks();
+addLocalStorage();
