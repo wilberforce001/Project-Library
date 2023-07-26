@@ -66,6 +66,16 @@
     border-left: 10px solid rgb(18, 157, 0) !important;
 }
 
+
+/* Edit Button (Pencil) */
+.edit-icon {
+  fill: blue;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  right: 45px;
+  top: 15px;
+}
 /* The Close Button */
 .close {
     color: #aaaaaa;
