@@ -76,6 +76,17 @@
   right: 45px;
   top: 15px;
 }
+
+.books {
+  display: flex;
+  justify-content: flex-start;
+  
+}
+
+.book-container {
+  margin: 10px;
+}
+
 /* The Close Button */
 .close {
     color: #aaaaaa;
@@ -99,7 +110,19 @@
 }
 
 
-/* Modal Content */
+
+.icon1 {
+  margin-left: 80px;
+}
+
+
+
+.icon2, 
+.icon3 {
+  margin-left: 15px;
+} */
+
+/* Modal Content 
 .modal-content {
     background-color: #fefefe;
     display: flex;
@@ -112,7 +135,7 @@
 }
 
 
-/* The Close Button */
+/* The Close Button 
 .close {
     color: #aaaaaa;
     font-size: 28px;
