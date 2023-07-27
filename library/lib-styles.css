@@ -83,19 +83,19 @@
   
 }
 
-.book-container {
+/*.book-container {
   margin: 10px;
 }
 
 /* The Close Button */
-.close {
+/*.close {
     color: #aaaaaa;
     font-size: 28px;
     font-weight: bold;
 }
 
 
-.modal {
+/*.modal {
     display: none;
     position: fixed;
     z-index: 1;
