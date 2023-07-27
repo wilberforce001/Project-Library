@@ -37,6 +37,63 @@ if (checkedBook) {
 SaveAndRenderBooks();
 };
 
+// Function to handle form submission
+function addBookToLibrary(title, author, pages, read) {
+  const newBook = {
+    title: title,
+    author: author,
+    pages: pages,
+    read: read,
+  };
+
+  myLibrary.push(newBook);
+  SaveAndRenderBooks();
+  closeModal(); // Close the modal after adding the book
+}
+
+function handleSubmitForm(event) {
+  event.preventDefault();
+  const form = event.target;
+  const title = form.elements["book-title"].value;
+  const author = form.elements["book-author"].value;
+  const pages = parseInt(form.elements["book-pages"].value)
+  const read = form.elements["book-read"].checked;
+
+  addBookToLibrary(title, author, pages, read);
+}
+
+
+// Function to open the modal 
+function openModal() {
+  const modal = document.getElementById("modal");
+  modal.style.display = "block";
+
+}
+
+// Function to close the modal 
+function closeModal() {
+  const modal = document.getElementById("modal");
+  modal.style.display = "none";
+
+  // Clear form fields 
+  const form = document.querySelector(".add-book-form");
+  form.reset();
+
+}
+
+// Event listener for "New" button
+const addBookButton = document.querySelector(".add-book");
+addBookButton.addEventListener("click", openModal);
+
+// Event listener for the close button inside the modal
+const closeModalButton = document.querySelector(".close");
+closeModalButton.addEventListener("click", closeModal);
+
+// Event listener for the form submission
+const form = document.querySelector(".add-book-form");
+form.addEventListener("submit", handleSubmitForm);
+
+
 const book1Container = document.createElement("div");
 book1Container.setAttribute("class", "book-container");
 const book2Container = document.createElement("div");
