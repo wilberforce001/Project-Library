@@ -4,21 +4,37 @@ const books = document.querySelector(".books");
 let myLibrary = [];
 
 function addLocalStorage() {
-  localStorage.setItem('library', JSON.stringify([{
-      title: "Book1",
-      author: "me", 
-      pages: 5000,
-      read: false,
-  }, 
-  {
-      title: "Book2",
-      author: "you", 
-      pages: 500,
-      read: false,
-  }]));
 
-  myLibrary = JSON.parse(localStorage.getItem("library")) || [];
-  renderBooks();
+  // localStorage => save things in key value pairs -key = library : myLibrary
+  const defaultLibrary = [{
+    title: "Book1",
+    author: "me", 
+    pages: 5000,
+    read: false,
+}, 
+{
+    title: "Book2",
+    author: "you", 
+    pages: 500,
+    read: false,
+}];
+
+let SavedLibrary = JSON.parse(localStorage.getItem("library")) || [];
+
+// Check if there is a checked book in the saved library
+const checkedBook = SavedLibrary.find((book) => book.read === true);
+  
+if (checkedBook) {
+  // If a checked book exists, use only the checked book
+  myLibrary = [checkedBook];
+
+} else {
+  // If no checked book exists, use the defult library
+  myLibrary = defaultLibrary;
+
+  
+}
+SaveAndRenderBooks();
 };
 
 const book1Container = document.createElement("div");
@@ -33,29 +49,33 @@ function createBookElement(el, content, className) {
     element.textContent = content;
     element.setAttribute("class", className);
 
-    return element;
+    // Call addLocalStorage on page load
+    return element; // Return the created element
 }
 
 function createReadElement(bookItem, book) {
     let read = document.createElement("div");
-    read.setAttribute("class", "book-read");
+    read.classList.add("book-read");
     read.appendChild(createBookElement("h1", "Read?", "book-read-title"));
     let input = document.createElement("input");
     input.type = "checkbox";
     input.addEventListener("click", (e) => {
       if (e.target.checked) {
-        bookItem.setAttribute("class", "card book read-checked");
+        bookItem.classList.add("read-checked");
         book.read = true;
-        renderAndSave();
+        SaveAndRenderBooks();
       } else {
-        bookItem.setAttribute("class", "card book read-unchecked");
+        bookItem.classList.remove("read-checked");
         book.read = false;
-        renderAndSave();
+        SaveAndRenderBooks();
       }
     });
     if (book.read) {
       input.checked = true;
-      bookItem.setAttribute("class", "card book read-checked");
+      bookItem.classList.add("read-checked");
+    } else {
+      input.checked = false;
+      bookItem.classList.remove("read-checked");
     }
     read.appendChild(input);
     return read;
@@ -131,6 +151,26 @@ function deleteBook(index) {
   }
 };
 
+function deleteBookItem(bookItem) {
+  const index = bookItem.getAttribute("key");
+  myLibrary.splice(index, 1);
+  if (index === "0") {
+    book1Container.removeChild(bookItem);
+  } else if (index === "1") {
+    book2Container.removeChild(bookItem);
+  }
+}
+
+function removeBookItems() {
+  const bookItems = document.querySelectorAll(".book");
+  bookItems.forEach((bookItem) => {
+    bookItem.querySelector(".delete").removeEventListener("click", () => {
+      deleteBookItem(bookItem);
+    });
+    bookItem.remove();
+  });
+}
+
 function createBookItem(book, index) {
     const bookItem = document.createElement("div");
     bookItem.setAttribute('id', index);
@@ -163,7 +203,7 @@ function createBookItem(book, index) {
     }
 
     bookItem.querySelector(".delete").addEventListener('click', () => {
-      deleteBook(index);
+      deleteBookItem(bookItem);
     });
 
       
@@ -171,9 +211,17 @@ function createBookItem(book, index) {
 };
 
 function renderBooks () {
-    myLibrary.map((book, index) => {
+    removeBookItems();
+    myLibrary.forEach((book, index) => {
         createBookItem(book, index);
 
     });
 }
+
+function SaveAndRenderBooks() {
+  localStorage.setItem("library", JSON.stringify(myLibrary));
+  renderBooks();
+}
+
+// render on page load
 addLocalStorage();
