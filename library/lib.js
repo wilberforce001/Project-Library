@@ -1,4 +1,11 @@
 const books = document.querySelector(".books");
+const addBook = document.querySelector(".add-book");
+const modal = document.querySelector("#modal");
+
+addBook.addEventListener("click", () => {
+  //document.querySelector(".form-title").textContent = "Add Book";
+  document.querySelector(".form-add-button").textContent = "Add";
+});
 
 
 let myLibrary = [];
@@ -23,10 +30,14 @@ let SavedLibrary = JSON.parse(localStorage.getItem("library")) || [];
 
 // Check if there is a checked book in the saved library
 const checkedBook = SavedLibrary.find((book) => book.read === true);
-  
+const uncheckedBook = SavedLibrary.find((book) => book.read === false);  
 if (checkedBook) {
-  // If a checked book exists, use only the checked book
+  
+  // If a checked book exists, use the saved library
   myLibrary = [checkedBook];
+
+  // If an unchecked book exists, use the saved library
+  myLibrary = [uncheckedBook];
 
 } else {
   // If no checked book exists, use the defult library
@@ -36,6 +47,46 @@ if (checkedBook) {
 }
 SaveAndRenderBooks();
 };
+
+function Book(title, author, pages, read){
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.read = read;
+  this.id = Math.floor(Math.random() * 10000000000);
+}
+
+
+function addBookToLibrary(title, author, pages, read) {
+  myLibrary.push(new Book(title, author, pages, read));
+  SaveAndRenderBooks();
+}
+
+
+const addBookForm = document.querySelector(".add-book-form")
+addBookForm.addEventListener("submit", (e) => {
+  e.preventDefault()
+
+  const data = new FormData(e.target)
+  let newBook = {}
+  for(let [name, value] of data) {
+    if(name === "book-read") {
+      newBook["book-read"] = true;
+    } else {
+      newBook[name] = value || "";
+    }
+  }
+
+  if (!newBook["book-read"]) {
+    newBook["book-read"] = false;
+  }
+  addBookToLibrary(
+    newBook["book-title"],
+    newBook["book-author"],
+    newBook["book-pages"],
+    newBook["book-read"]
+  );
+})
 
 // Function to handle form submission
 function addBookToLibrary(title, author, pages, read) {
@@ -51,6 +102,7 @@ function addBookToLibrary(title, author, pages, read) {
   closeModal(); // Close the modal after adding the book
 }
 
+// Function to handle form submission
 function handleSubmitForm(event) {
   event.preventDefault();
   const form = event.target;
@@ -282,3 +334,4 @@ function SaveAndRenderBooks() {
 
 // render on page load
 addLocalStorage();
+

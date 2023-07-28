@@ -49,6 +49,7 @@
   font-weight: 500;
   margin-right: 5px;
 }
+
 .card {
   border-left: 10px solid rgb(180, 1, 1) !important;
   max-width: 300px;
@@ -56,13 +57,16 @@
 }
 .read-checked {
   border-left: 10px solid rgb(18, 157, 0) !important;
-}
+} 
+
+
 .edit-icon {
   width: 25px;
   height: 25px;
   position: absolute;
   right: 45px;
   top: 15px;
+  fill: blue;
 }
 .modal {
   display: none; /* Hidden by default */
@@ -199,4 +203,27 @@
   justify-content: center;
   padding-bottom: 20px;
 }
+
+.projects .book-container {
+  display: grid;
+  grid-auto-rows: 250px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1px));
+  padding-right: 20rem;
+  flex-wrap: wrap;
+
+} 
+
+.content {
+  grid-template-areas: "projects";
+  overflow: auto;
+  height: 100%;
+}
+
+
+.books {
+  display: flex;
+}
+
+
+
 
