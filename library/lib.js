@@ -268,6 +268,17 @@ function deleteBookItem(bookItem) {
   } else if (index === "1") {
     book2Container.removeChild(bookItem);
   }
+  
+  // Remove the book item from the DOM
+  bookItem.remove();
+
+  // Update the key attribute for remaining book cards
+  const bookItems = document.querySelectorAll(".book");
+  bookItems.forEach((bookItem, newIndex) => {
+    bookItem.setAttribute("key", newIndex);
+  });
+  // Re-render the books
+  renderBooks();
 }
 
 function removeBookItems() {

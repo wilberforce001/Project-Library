@@ -204,26 +204,15 @@
   padding-bottom: 20px;
 }
 
-.projects .book-container {
+.content .books {
   display: grid;
-  grid-auto-rows: 250px;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1px));
-  padding-right: 20rem;
-  flex-wrap: wrap;
-
-} 
-
-.content {
-  grid-template-areas: "projects";
-  overflow: auto;
-  height: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  
 }
 
-
-.books {
-  display: flex;
+.content .books .book-container {
+  border-radius: 15px;
 }
-
 
 
 
