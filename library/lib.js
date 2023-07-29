@@ -158,19 +158,34 @@ function handleSubmitForm(event) {
   const form = event.target;
   const title = form.elements["book-title"].value;
   const author = form.elements["book-author"].value;
-  const pagesInputValue = form.elements["book-pages"].value;
+  const pages = parseInt(form.elements["book-pages"].value);
   const read = form.elements["book-read"].checked;
 
-  let pages;
-  if (pagesInputValue.trim() === "" || isNaN(pagesInputValue)) {
-    // If the pages input is empty or not a valid number, set pages to 0
-    pages = 0;
-  } else {
-    // If the pages input is a valid number, parse it
-    pages = parseInt(pagesInputValue);
+  if (!title.trim() || !author()) {
+    alert("Title and author fields cannot be empty.");
+    return;
   }
+  // Check if a book with the same title and author already exists
+  const existingBook = myLibrary.find((book) => book.title === title && book.author === author);
 
+  if (existingBook) {
+    // Book with the same title and author already exists
+    // Update the read status of the existing book
+    existingBook.read = read;
+  } else {
+    // Book with the same title and author does not exist
+    // Create a new book and add it to the library
+    const newBook = {
+      title: title, 
+      author: author, 
+      pages: pages,
+      read: read,
+    };
+    myLibrary.push(newBook);
+
+  }
   addBookToLibrary(title, author, pages, read);
+  closeModal(); // Close the modal after adding the book
 }
 
 
@@ -373,7 +388,6 @@ function createBookItem(book, index) {
     bookItem.appendChild(editIcon);
     
 
-    //books.appendChild(bookItem);// Append the bookItem directly to the .books container
 
     if (index === 0) {
       book1Container.appendChild(bookItem);
@@ -386,8 +400,12 @@ function createBookItem(book, index) {
     });
 
       
-    //books.insertAdjacentElement("afterbegin", bookItem);
 };
+
+function removeBookItems() {
+  book1Container.innerHTML = "";
+  book2Container.innerHTML = "";
+}
 
 function renderBooks () {
     removeBookItems();

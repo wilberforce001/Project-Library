@@ -234,4 +234,9 @@
   bottom: 15px;
 }
 
+.book-container {
+  gap: 15px;
+  position: relative;
+}
+
 
