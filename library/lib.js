@@ -67,6 +67,10 @@ const addBookForm = document.querySelector(".add-book-form")
 addBookForm.addEventListener("submit", (e) => {
   e.preventDefault()
 
+  addBookForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+  })
+
   const data = new FormData(e.target)
   let newBook = {}
   for(let [name, value] of data) {
@@ -77,6 +81,20 @@ addBookForm.addEventListener("submit", (e) => {
     }
   }
 
+  if (!newBook["book-read"]) {
+    newBook["book-read"] = false;
+  }
+
+  // Set default values for empty fields
+  if (!newBook["book-title"]) {
+    newBook["book-title"] = "Uknown Title";
+  } 
+  if (!newBook["book-author"]) {
+    newBook["book-author"] = "Unknown Author";
+  } 
+  if (!newBook["book-pages"]) {
+    newBook["book-pages"] = 0;
+  } 
   if (!newBook["book-read"]) {
     newBook["book-read"] = false;
   }
