@@ -42,7 +42,7 @@ if (checkedBook) {
   }
 } else {
   // If no checked book exists, use the defult library
-  myLibrary = defaultLibrary;
+  myLibrary = defaultLibrary.map(book => new Book(book.title, book.author, book.pages, book.read));
 
   
 }
@@ -114,12 +114,30 @@ addBookForm.addEventListener("submit", (e) => {
     newBook["book-pages"] = 0;
   
   }
-  addBookToLibrary(
-    newBook["book-title"],
-    newBook["book-author"],
-    newBook["book-pages"],
-    newBook["book-read"]
-  );
+
+  if(document.querySelector('.form-title').textContent === "Edit Book") {
+    let id = e.target.id;
+    let editBook = myLibrary.filter(book => book.id === id);
+    if (editBook) {
+      editBook.title = newBook['book-title'];
+      editBook.author = newBook['book-author'];
+      editBook.pages = newBook['book-pages'];
+      editBook.read = newBook['book-read'];
+
+    SaveAndRenderBooks();
+
+    } else {
+      console.error("Book with the specified ID not found.")
+    }
+
+  } else {
+  //   addBookToLibrary(
+  //     newBook["book-title"],
+  //     newBook["book-author"],
+  //     newBook["book-pages"],
+  //     newBook["book-read"]
+  //   );
+  }
 })
 
 // Function to handle form submission
@@ -278,6 +296,7 @@ function fillOutEditForm(book) {
   modal.style.display = "block"
   document.querySelector('.form-title').textContent = "Edit Book"
   document.querySelector('.form-add-button').textContent = "Edit"
+  document.querySelector(".add-book-form").setAttribute("id", book.id);
   document.querySelector('#book-title').value = book.title || ""
   document.querySelector('#book-author').value = book.author || ""
   document.querySelector('#book-pages').value = book.pages || ""
@@ -368,6 +387,7 @@ function removeBookItems() {
 
 function createBookItem(book, index) {
     const bookItem = document.createElement("div");
+    const booksContainer = document.querySelector(".books");
     bookItem.setAttribute('data-key', index);
     bookItem.setAttribute('class', 'card book');
     bookItem.appendChild(createBookElement('h1', `Title: ${book.title}`, "book-title"));
@@ -386,14 +406,8 @@ function createBookItem(book, index) {
     bookItem.appendChild(icon2);
     bookItem.appendChild(icon3);
     bookItem.appendChild(editIcon);
-    
 
-
-    if (index === 0) {
-      book1Container.appendChild(bookItem);
-    } else if (index === 1) {
-      book2Container.appendChild(bookItem);
-    }
+    booksContainer.appendChild(bookItem); // Append the book container to the "books" container 
 
     bookItem.querySelector(".delete").addEventListener('click', () => {
       deleteBookItem(bookItem);
@@ -407,13 +421,22 @@ function removeBookItems() {
   book2Container.innerHTML = "";
 }
 
-function renderBooks () {
-    removeBookItems();
-    myLibrary.forEach((book, index) => {
-        createBookItem(book, index);
+function renderBooks() {
+  const booksContainer = document.querySelector(".books");
+  booksContainer.innerHTML = ""; // Clear the current content
 
-    });
+  myLibrary.forEach((book, index) => {
+    createBookItem(book, index);
+  });
 }
+
+// function renderBooks () {
+//     removeBookItems();
+//     myLibrary.forEach((book, index) => {
+//         createBookItem(book, index);
+
+//     });
+// }
 
 function SaveAndRenderBooks() {
   localStorage.setItem("library", JSON.stringify(myLibrary));
