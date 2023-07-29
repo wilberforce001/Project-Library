@@ -58,7 +58,27 @@ function Book(title, author, pages, read){
 
 
 function addBookToLibrary(title, author, pages, read) {
-  myLibrary.push(new Book(title, author, pages, read));
+  // Check if the provided title and author are not empty
+  if (!title.trim() || author.trim()) {
+    alert("Title and author fields cannot be empty.");
+    return;
+  }
+  // Check if a book with the same title and author already exists in the library
+  const existingBook = myLibrary.find(
+  (book) => book.title === title && book.author === author
+);
+
+if (existingBook) {
+    // Book with the same title and author already exists
+    // Update the read status of the existing bookexistingBook.pages = pages;
+    existingBook.read = read;
+  } else {
+
+    // Book with the same title and author does not exist
+    // Create a new book and add it to the library
+    const newBook = newBook(title, author, pages, read);
+  myLibrary.push(newBook);
+}
   SaveAndRenderBooks();
 }
 
