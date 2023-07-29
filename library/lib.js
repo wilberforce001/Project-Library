@@ -31,14 +31,15 @@ let SavedLibrary = JSON.parse(localStorage.getItem("library")) || [];
 // Check if there is a checked book in the saved library
 const checkedBook = SavedLibrary.find((book) => book.read === true);
 const uncheckedBook = SavedLibrary.find((book) => book.read === false);  
+
 if (checkedBook) {
-  
   // If a checked book exists, use the saved library
-  myLibrary = [checkedBook];
+  myLibrary.push(checkedBook);
 
+  if (uncheckedBook) {
   // If an unchecked book exists, use the saved library
-  myLibrary = [uncheckedBook];
-
+    myLibrary.push(uncheckedBook);
+  }
 } else {
   // If no checked book exists, use the defult library
   myLibrary = defaultLibrary;
@@ -59,7 +60,7 @@ function Book(title, author, pages, read){
 
 function addBookToLibrary(title, author, pages, read) {
   // Check if the provided title and author are not empty
-  if (!title.trim() || author.trim()) {
+  if (!title.trim() || !author.trim()) {
     alert("Title and author fields cannot be empty.");
     return;
   }
@@ -76,7 +77,7 @@ if (existingBook) {
 
     // Book with the same title and author does not exist
     // Create a new book and add it to the library
-    const newBook = newBook(title, author, pages, read);
+    const newBook = new Book(title, author, pages, read);
   myLibrary.push(newBook);
 }
   SaveAndRenderBooks();
@@ -87,9 +88,6 @@ const addBookForm = document.querySelector(".add-book-form")
 addBookForm.addEventListener("submit", (e) => {
   e.preventDefault()
 
-  addBookForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-  })
 
   const data = new FormData(e.target)
   let newBook = {}
@@ -114,9 +112,7 @@ addBookForm.addEventListener("submit", (e) => {
   } 
   if (!newBook["book-pages"]) {
     newBook["book-pages"] = 0;
-  } 
-  if (!newBook["book-read"]) {
-    newBook["book-read"] = false;
+  
   }
   addBookToLibrary(
     newBook["book-title"],
@@ -127,18 +123,7 @@ addBookForm.addEventListener("submit", (e) => {
 })
 
 // Function to handle form submission
-function addBookToLibrary(title, author, pages, read) {
-  const newBook = {
-    title: title,
-    author: author,
-    pages: pages,
-    read: read,
-  };
 
-  myLibrary.push(newBook);
-  SaveAndRenderBooks();
-  closeModal(); // Close the modal after adding the book
-}
 
 
 // Function to close the modal when clicking outside the form
@@ -159,14 +144,15 @@ function handleSubmitForm(event) {
   const title = form.elements["book-title"].value;
   const author = form.elements["book-author"].value;
   const pages = parseInt(form.elements["book-pages"].value);
-  const read = form.elements["book-read"].checked;
 
-  if (!title.trim() || !author()) {
+  if (!title.trim() || !author.trim()) {
     alert("Title and author fields cannot be empty.");
     return;
   }
   // Check if a book with the same title and author already exists
   const existingBook = myLibrary.find((book) => book.title === title && book.author === author);
+
+  const read = form.elements["book-read"].checked; // Get the read status from the form
 
   if (existingBook) {
     // Book with the same title and author already exists
@@ -186,6 +172,9 @@ function handleSubmitForm(event) {
   }
   addBookToLibrary(title, author, pages, read);
   closeModal(); // Close the modal after adding the book
+
+  // Clear form fields after successful addition
+  form.reset();
 }
 
 
@@ -367,8 +356,7 @@ function removeBookItems() {
 
 function createBookItem(book, index) {
     const bookItem = document.createElement("div");
-    bookItem.setAttribute('id', index);
-    bookItem.setAttribute('key', index);
+    bookItem.setAttribute('data-key', index);
     bookItem.setAttribute('class', 'card book');
     bookItem.appendChild(createBookElement('h1', `Title: ${book.title}`, "book-title"));
     bookItem.appendChild(createBookElement('h1', `Author: ${book.author}`, "book-author"));
