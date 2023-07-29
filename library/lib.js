@@ -88,70 +88,40 @@ const addBookForm = document.querySelector(".add-book-form")
 addBookForm.addEventListener("submit", (e) => {
   e.preventDefault()
 
-  const form = e.target;
-  const title = form.elements["book-title"].value;
-  const author = form.elements["book-author"].value;
-  const pages = parseInt(form.elements["book-pages"].value);
-  const read = form.elements["book-read"].checked;
 
-  // Check if the form is being used for adding or editing
-  const editIndex = parseInt(form.getAttribute("data-edit-index"));
-  if (Number.isInteger(editIndex) && editIndex >= 0) {
-    // Editing existing book
-    if (!title.trim() || !author.trim()) {
-      alert("Title and author fields cannot be empty.");
-      return;
+  const data = new FormData(e.target)
+  let newBook = {}
+  for(let [name, value] of data) {
+    if(name === "book-read") {
+      newBook["book-read"] = true;
+    } else {
+      newBook[name] = value || "";
     }
-    // Update the existing book details
-    myLibrary[editIndex].title = title;
-    myLibrary[editIndex].author = author;
-    myLibrary[editIndex].pages = pages;
-    myLibrary[editIndex].read = read;
+  }
 
-  } else {
-    // Adding new book
-    addBookToLibrary(title, author, pages, read);
+  if (!newBook["book-read"]) {
+    newBook["book-read"] = false;
+  }
+
+  // Set default values for empty fields
+  if (!newBook["book-title"]) {
+    newBook["book-title"] = "Uknown Title";
   } 
-
-  // Save and render books after updating the library
-  SaveAndRenderBooks();
-  closeModal(); // Close the modal after adding/updating the boook
-
-  // Clear form fields after successful addition/editing
-  form.reset();
-});
-
-// const data = new FormData(e.target)
-//   let newBook = {}
-//   for(let [name, value] of data) {
-//     if(name === "book-read") {
-//       newBook["book-read"] = true;
-//     } else {
-//       newBook[name] = value || "";
-//     }
-//   }
-
-//   if (!newBook["book-read"]) {
-//     newBook["book-read"] = false;
+  if (!newBook["book-author"]) {
+    newBook["book-author"] = "Unknown Author";
+  } 
+  if (!newBook["book-pages"]) {
+    newBook["book-pages"] = 0;
   
+  }
+  addBookToLibrary(
+    newBook["book-title"],
+    newBook["book-author"],
+    newBook["book-pages"],
+    newBook["book-read"]
+  );
+})
 
-//   // Set default values for empty fields
-//   if (!newBook["book-title"]) {
-//     newBook["book-title"] = "Uknown Title";
-//   } 
-//   if (!newBook["book-author"]) {
-//     newBook["book-author"] = "Unknown Author";
-//   } 
-//   if (!newBook["book-pages"]) {
-//     newBook["book-pages"] = 0;
-  
-//   }
-//   addBookToLibrary(
-//     newBook["book-title"],
-//     newBook["book-author"],
-//     newBook["book-pages"],
-//     newBook["book-read"]
-//   );
 // Function to handle form submission
 
 
@@ -214,30 +184,6 @@ function openModal() {
   modal.style.display = "block";
 
 }
-
-function openModalForEdit(book) {
-  // Set the title of the modal for editing
-  document.querySelector(".form-title").textContent = "Edit Book";
-  document.querySelector(".form-add-button").textContent = "Save";
-
-  // Populate the form fields with the book details
-  const form = document.querySelector(".add-book-form");
-  form.elements["book-title"].value = book.title;
-  form.elements["book-author"].value = book.author;
-  form.elements["book-pages"].value = book.pages;
-  form.elements["book-read"].checked = book.read;
-
-  // Store the book index in a data attribute of the form
-  form.setAttribute("data-edit-index", myLibrary.indexOf(book));
-
-  // Open the modal for editing
-  openModal();
-}
-
-// Add event listener to the editIcon when it's created in the the createBookItem function
-editIcon.addEventListener("click", () => {
-  openModalForEdit(book);
-});
 
 // Function to close the modal 
 function closeModal() {
@@ -328,6 +274,17 @@ function createIcon3() {
   return icon;
 }
 
+function fillOutEditForm(book) {
+  modal.style.display = "block"
+  document.querySelector('.form-title').textContent = "Edit Book"
+  document.querySelector('.form-add-button').textContent = "Edit"
+  document.querySelector('#book-title').value = book.title || ""
+  document.querySelector('#book-author').value = book.author || ""
+  document.querySelector('#book-pages').value = book.pages || ""
+  document.querySelector('#book-read').value = book.read;
+
+}
+
 function createEditIcon(book) {
   const editIconPathData = "M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z";
 
@@ -335,6 +292,7 @@ function createEditIcon(book) {
   editIcon.setAttribute("class", "edit-icon"); // Add class to the SVG element
   editIcon.addEventListener("click", (e) => {
     console.log(book);
+    fillOutEditForm(book);
   })
 
 
@@ -464,4 +422,5 @@ function SaveAndRenderBooks() {
 
 // render on page load
 addLocalStorage();
+
 
