@@ -120,6 +120,18 @@ function addBookToLibrary(title, author, pages, read) {
   closeModal(); // Close the modal after adding the book
 }
 
+
+// Function to close the modal when clicking outside the form
+function closeModalOnClickOutside(event) {
+  const modal = document.getElementById("modal");
+  if (event.target === modal) {
+    closeModal();
+  }
+}
+
+// Event listener for the entire document to handle clicks outside the form
+document.addEventListener("click", closeModalOnClickOutside);
+
 // Function to handle form submission
 function handleSubmitForm(event) {
   event.preventDefault();
