@@ -138,8 +138,17 @@ function handleSubmitForm(event) {
   const form = event.target;
   const title = form.elements["book-title"].value;
   const author = form.elements["book-author"].value;
-  const pages = parseInt(form.elements["book-pages"].value)
+  const pagesInputValue = form.elements["book-pages"].value;
   const read = form.elements["book-read"].checked;
+
+  let pages;
+  if (pagesInputValue.trim() === "" || isNaN(pagesInputValue)) {
+    // If the pages input is empty or not a valid number, set pages to 0
+    pages = 0;
+  } else {
+    // If the pages input is a valid number, parse it
+    pages = parseInt(pagesInputValue);
+  }
 
   addBookToLibrary(title, author, pages, read);
 }
