@@ -88,40 +88,70 @@ const addBookForm = document.querySelector(".add-book-form")
 addBookForm.addEventListener("submit", (e) => {
   e.preventDefault()
 
+  const form = e.target;
+  const title = form.elements["book-title"].value;
+  const author = form.elements["book-author"].value;
+  const pages = parseInt(form.elements["book-pages"].value);
+  const read = form.elements["book-read"].checked;
 
-  const data = new FormData(e.target)
-  let newBook = {}
-  for(let [name, value] of data) {
-    if(name === "book-read") {
-      newBook["book-read"] = true;
-    } else {
-      newBook[name] = value || "";
+  // Check if the form is being used for adding or editing
+  const editIndex = parseInt(form.getAttribute("data-edit-index"));
+  if (Number.isInteger(editIndex) && editIndex >= 0) {
+    // Editing existing book
+    if (!title.trim() || !author.trim()) {
+      alert("Title and author fields cannot be empty.");
+      return;
     }
-  }
+    // Update the existing book details
+    myLibrary[editIndex].title = title;
+    myLibrary[editIndex].author = author;
+    myLibrary[editIndex].pages = pages;
+    myLibrary[editIndex].read = read;
 
-  if (!newBook["book-read"]) {
-    newBook["book-read"] = false;
-  }
+  } else {
+    // Adding new book
+    addBookToLibrary(title, author, pages, read);
+  } 
 
-  // Set default values for empty fields
-  if (!newBook["book-title"]) {
-    newBook["book-title"] = "Uknown Title";
-  } 
-  if (!newBook["book-author"]) {
-    newBook["book-author"] = "Unknown Author";
-  } 
-  if (!newBook["book-pages"]) {
-    newBook["book-pages"] = 0;
+  // Save and render books after updating the library
+  SaveAndRenderBooks();
+  closeModal(); // Close the modal after adding/updating the boook
+
+  // Clear form fields after successful addition/editing
+  form.reset();
+});
+
+// const data = new FormData(e.target)
+//   let newBook = {}
+//   for(let [name, value] of data) {
+//     if(name === "book-read") {
+//       newBook["book-read"] = true;
+//     } else {
+//       newBook[name] = value || "";
+//     }
+//   }
+
+//   if (!newBook["book-read"]) {
+//     newBook["book-read"] = false;
   
-  }
-  addBookToLibrary(
-    newBook["book-title"],
-    newBook["book-author"],
-    newBook["book-pages"],
-    newBook["book-read"]
-  );
-})
 
+//   // Set default values for empty fields
+//   if (!newBook["book-title"]) {
+//     newBook["book-title"] = "Uknown Title";
+//   } 
+//   if (!newBook["book-author"]) {
+//     newBook["book-author"] = "Unknown Author";
+//   } 
+//   if (!newBook["book-pages"]) {
+//     newBook["book-pages"] = 0;
+  
+//   }
+//   addBookToLibrary(
+//     newBook["book-title"],
+//     newBook["book-author"],
+//     newBook["book-pages"],
+//     newBook["book-read"]
+//   );
 // Function to handle form submission
 
 
@@ -184,6 +214,30 @@ function openModal() {
   modal.style.display = "block";
 
 }
+
+function openModalForEdit(book) {
+  // Set the title of the modal for editing
+  document.querySelector(".form-title").textContent = "Edit Book";
+  document.querySelector(".form-add-button").textContent = "Save";
+
+  // Populate the form fields with the book details
+  const form = document.querySelector(".add-book-form");
+  form.elements["book-title"].value = book.title;
+  form.elements["book-author"].value = book.author;
+  form.elements["book-pages"].value = book.pages;
+  form.elements["book-read"].checked = book.read;
+
+  // Store the book index in a data attribute of the form
+  form.setAttribute("data-edit-index", myLibrary.indexOf(book));
+
+  // Open the modal for editing
+  openModal();
+}
+
+// Add event listener to the editIcon when it's created in the the createBookItem function
+editIcon.addEventListener("click", () => {
+  openModalForEdit(book);
+});
 
 // Function to close the modal 
 function closeModal() {
