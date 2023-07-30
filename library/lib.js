@@ -116,8 +116,8 @@ addBookForm.addEventListener("submit", (e) => {
   }
 
   if(document.querySelector('.form-title').textContent === "Edit Book") {
-    let id = e.target.id;
-    let editBook = myLibrary.filter(book => book.id === id);
+    let id = parseInt(e.target.id);
+    let editBook = myLibrary.find(book => book.id === id);
     if (editBook) {
       editBook.title = newBook['book-title'];
       editBook.author = newBook['book-author'];
@@ -131,12 +131,12 @@ addBookForm.addEventListener("submit", (e) => {
     }
 
   } else {
-  //   addBookToLibrary(
-  //     newBook["book-title"],
-  //     newBook["book-author"],
-  //     newBook["book-pages"],
-  //     newBook["book-read"]
-  //   );
+    addBookToLibrary(
+      newBook["book-title"],
+      newBook["book-author"],
+      newBook["book-pages"],
+      newBook["book-read"]
+    );
   }
 })
 
@@ -162,6 +162,7 @@ function handleSubmitForm(event) {
   const title = form.elements["book-title"].value;
   const author = form.elements["book-author"].value;
   const pages = parseInt(form.elements["book-pages"].value);
+  const read = form.elements["book-read"].checked;
 
   if (!title.trim() || !author.trim()) {
     alert("Title and author fields cannot be empty.");
@@ -169,8 +170,6 @@ function handleSubmitForm(event) {
   }
   // Check if a book with the same title and author already exists
   const existingBook = myLibrary.find((book) => book.title === title && book.author === author);
-
-  const read = form.elements["book-read"].checked; // Get the read status from the form
 
   if (existingBook) {
     // Book with the same title and author already exists
@@ -430,13 +429,6 @@ function renderBooks() {
   });
 }
 
-// function renderBooks () {
-//     removeBookItems();
-//     myLibrary.forEach((book, index) => {
-//         createBookItem(book, index);
-
-//     });
-// }
 
 function SaveAndRenderBooks() {
   localStorage.setItem("library", JSON.stringify(myLibrary));
@@ -445,5 +437,3 @@ function SaveAndRenderBooks() {
 
 // render on page load
 addLocalStorage();
-
-
