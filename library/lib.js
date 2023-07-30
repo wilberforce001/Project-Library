@@ -211,6 +211,9 @@ function closeModal() {
   const form = document.querySelector(".add-book-form");
   form.reset();
 
+  //Clear the id attribute of the form
+  form.removeAttribute("id");
+
 }
 
 // Event listener for "New" button

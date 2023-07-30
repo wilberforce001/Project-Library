@@ -1,6 +1,7 @@
 .book {
   position: relative;
   z-index: 0;
+  max-width: 100%;
 }
 .navbar {
   z-index: 10;
@@ -24,11 +25,17 @@
   font-style: oblique;
   text-decoration: underline;
   text-decoration-thickness: 0.15rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .book-author {
   font-size: 1.5rem;
   font-weight: 500;
   margin-bottom: 0.5rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .book-pages {
   font-size: 1.3rem;
@@ -48,6 +55,10 @@
   font-size: 1.3rem;
   font-weight: 500;
   margin-right: 5px;
+}
+
+.book-details {
+  display: flex;
 }
 
 .card {
@@ -236,7 +247,8 @@
 
 .book-container {
   gap: 15px;
-  position: relative;
+  max-width: 400px;
+  margin: 10px;
 }
 
 
